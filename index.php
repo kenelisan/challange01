@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html >
   <head>
     <meta charset="UTF-8">
     <title>Sign-Up/Login Form</title>
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="css/normalize.css">
 
@@ -28,21 +29,21 @@
         <div id="signup">   
           <h1>Sign Up for Free</h1>
           
-          <form action="/" method="post">
+          <form action="registr.php" method="post">
           
           <div class="top-row">
             <div class="field-wrap">
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" />
+              <input type="text" required autocomplete="off" name="name" />
             </div>
         
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text"required autocomplete="off"/>
+              <input type="text"required autocomplete="off" name="lastname"/>
             </div>
           </div>
 
@@ -50,44 +51,52 @@
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="email"required autocomplete="off" name="email"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password"required autocomplete="off" name="password"/>
           </div>
           
-          <button type="submit" class="button button-block"/>Get Started</button>
+          <button type="submit" class="button button-block">Get Started</button>
           
           </form>
 
         </div>
         
-        <div id="login">   
+        <div id="login"> 
+         
+<?php
+include('login.php');
+
+if(isset($_SESSION['user_email'])){
+header("location: profile.php");
+}
+?>  
           <h1>Welcome Back!</h1>
           
-          <form action="/" method="post">
+          <form action="login.php" method="post">
           
             <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="email"required autocomplete="off" name="lemail"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password"required autocomplete="off" name="lpassword"/>
           </div>
           
           
           
-          <button class="button button-block"/>Log In</button>
+          <button class="button button-block">Log In</button>
           
           </form>
 
@@ -105,3 +114,5 @@
     
   </body>
 </html>
+
+<?php include 'dbconnect.php'; ?>
